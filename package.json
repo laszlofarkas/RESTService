@@ -5,17 +5,23 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently --kill-others \"tsc -w\" \"nodemon dist/index.js\"",
-    "build:live": "nodemon --exec ./node_modules/.bin/tsc -w"
+    "start": "npm run serve",
+    "serve": "concurrently --kill-others \"npm run watch-ts\" \"npm run watch-node\"",
+    "watch-node": "nodemon dist/server.js",
+    "watch-ts": "tsc -w"
   },
   "keywords": [],
   "author": "László Farkas",
-  "license": "ISC",
+  "license": "MTI",
   "devDependencies": {
     "@types/node": "^10.5.7",
+    "@types/express": "^4.16.0",
     "concurrently": "^3.6.1",
     "nodemon": "^1.18.3",
     "ts-node": "^7.0.0",
     "typescript": "^3.0.1"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
   }
 }
