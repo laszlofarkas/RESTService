@@ -1,16 +1,13 @@
 import { Request, Response } from 'express';
-import { PublishingModel } from '../models/publishingModel';
+import { model } from 'mongoose';
+import { PublishingSchema } from '../models/publishingModel';
+
+const Publishing = model('publishing', PublishingSchema);
 
 /**
  * Controller for processing HTTP request for Publishing
  */
 export class PublishingController {
-
-  private publishingModel: PublishingModel;
-
-  constructor() {
-    this.publishingModel = new PublishingModel();
-  }
 
   /**
    * Listing all Publishing items to the client
@@ -18,7 +15,12 @@ export class PublishingController {
    * @param {Response} res HTTP Response
    */
   public listPublishing(req: Request, res: Response) {
-    res.status(200).json(this.publishingModel.listPublishing());
+    Publishing.findOne({}, (err, publishingList) => {
+      if(err) {
+        res.status(500).send(err);
+      }
+      res.json(publishingList)
+    });
   }
 
 }

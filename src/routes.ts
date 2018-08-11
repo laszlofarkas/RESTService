@@ -10,8 +10,6 @@ export class Routes {
 
     // routes for base url
     app.route('/')
-      .get((req: Request, res: Response) =>
-        this.publishingController.listPublishing(req, res)
-      )
+      .get(this.publishingController.listPublishing)
   }
 }

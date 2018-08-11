@@ -14,14 +14,16 @@
   "author": "László Farkas",
   "license": "MTI",
   "devDependencies": {
-    "@types/node": "^10.5.7",
     "@types/express": "^4.16.0",
+    "@types/mongoose": "^5.2.5",
+    "@types/node": "^10.5.7",
     "concurrently": "^3.6.1",
     "nodemon": "^1.18.3",
     "ts-node": "^7.0.0",
     "typescript": "^3.0.1"
   },
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "mongoose": "^5.2.7"
   }
 }

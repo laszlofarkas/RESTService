@@ -1,67 +1,25 @@
-export type Publishing = {
-  id: string;
-  content: Object;
-  tags: String[];
-  status: string;
-  channels: Object[];
-  scheduled: String;
-  geo: Object;
-}
+import { Schema } from 'mongoose';
 
-export class PublishingModel {
-  private publishingList: Publishing[]
-
-  constructor() {
-    this.publishingList = [
-      {
-        "id": "8a1330c93e31b8af013e360d6a2106ea",
-        "content": {
-          "message": "Her er den perfekte gave",
-          "id": "8a1330c93e31b8af013e360d6a2106ea",
-          "network": "facebook",
-          "postType": "photo",
-          "media": {
-            "fileName": "konfirmationsgave til hende.jpg",
-            "url": "http://s3.amazonaws.com/mingler.falcon.scheduled_post_pictures/25c69cba-8881-4147-9fc9-d61a9c2de676"
-          }
-        },
-        "tags": [
-          "converstaion",
-          "sales"
-        ],
-        "status": "draft",
-        "channels": [
-          {
-            "name": "Konfirmanden",
-            "id": 433104606739910
-          }
-        ],
-        "scheduled": "2013-08-08T08:00:00.000Z",
-        "geo": {
-          "countries": [
-            {
-              "value": "Afghanistan",
-              "key": "134"
-            }
-          ],
-          "languages": [
-            {
-              "value": "Afrikaans",
-              "key": "31"
-            }
-          ],
-          "cities": [],
-          "regions": []
-        }
-      }
-    ]
+export const PublishingSchema = new Schema({
+  id: {
+    type: String
+  },
+  content: {
+    type: Object
+  },
+  tags: {
+    type: Array
+  },
+  status: {
+    type: String
+  },
+  channels: {
+    type: Array
+  },
+  scheduled: {
+    type: Date
+  },
+  geo: {
+    type: Object
   }
-
-  /**
-   * List all existing Publishing items
-   */
-  public listPublishing(): Publishing[] {
-    return this.publishingList;
-  }
-
-}
+})
