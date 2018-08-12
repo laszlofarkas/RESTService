@@ -8,8 +8,12 @@ export class Routes {
 
   public routes(app: Application): void {
 
-    // routes for base url
-    app.route('/')
-      .get(this.publishingController.listPublishing)
+    // routes for publishing url
+    app.route('/publishing')
+      .get(this.publishingController.list)
+      .put(this.publishingController.create);
+    app.route('/publishing/:id')
+      .post(this.publishingController.update)
+      .delete(this.publishingController.delete)
   }
 }
