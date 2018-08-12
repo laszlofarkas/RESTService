@@ -1,5 +1,6 @@
 import express from 'express';
 import * as bodyParser from 'body-parser';
+import cors from 'cors';
 import { connect, connection } from 'mongoose';
 import { Routes } from './routes';
 
@@ -22,6 +23,9 @@ class App {
     // request body will be parsed as json
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
+    this.app.use(cors({
+      origin: 'http://localhost:4200'
+    }));
   }
 
   /**
