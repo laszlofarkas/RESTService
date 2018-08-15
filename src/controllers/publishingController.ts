@@ -23,6 +23,15 @@ export class PublishingController {
     });
   }
 
+  public find(req: Request, res: Response) {
+    Publishing.findOne({ id: req.params.id }, (err, publishing) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+      res.json(publishing);
+    })
+  }
+
   /**
    * Create a new publishing
    * @param {Request} req HTTP Request

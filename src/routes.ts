@@ -13,6 +13,7 @@ export class Routes {
       .get(this.publishingController.list)
       .put(this.publishingController.create);
     app.route('/publishing/:id')
+      .get(this.publishingController.find)
       .post(this.publishingController.update)
       .delete(this.publishingController.delete)
   }
