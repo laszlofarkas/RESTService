@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import { model } from 'mongoose';
 import { PublishingSchema } from '../models/publishingModel';
+import crypto from 'crypto';
+
 
 const Publishing = model('publishing', PublishingSchema);
 
@@ -39,6 +41,8 @@ export class PublishingController {
    */
   public create(req: Request, res: Response) {
     let newPublishing = new Publishing(req.body);
+    newPublishing.id = crypto.randomBytes(16).toString('hex');
+    (newPublishing as any).content.id = newPublishing.id;
     newPublishing.save((err, publishing) => {
       if (err) {
         res.status(500).send(err);
