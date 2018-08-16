@@ -1,6 +1,6 @@
-import { Schema } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
-export const PublishingSchema = new Schema({
+const PublishingSchema = new Schema({
   id: String,
   content: {
     message: String,
@@ -22,3 +22,5 @@ export const PublishingSchema = new Schema({
   scheduled: Date,
   geo: Object
 });
+
+export const Publishing = model('publishing', PublishingSchema);

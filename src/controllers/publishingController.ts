@@ -1,10 +1,7 @@
 import { Request, Response } from 'express';
-import { model } from 'mongoose';
-import { PublishingSchema } from '../models/publishingModel';
+import { Publishing } from '../models/publishingModel';
 import crypto from 'crypto';
 import { publishingWS } from '../server';
-
-const Publishing = model('publishing', PublishingSchema);
 
 /**
  * Controller for processing HTTP request for Publishing
@@ -25,6 +22,11 @@ export class PublishingController {
     });
   }
 
+  /**
+   * Find one publishing by the requested id
+   * @param {Request} req HTTP Request
+   * @param {Response} res HTTP Response
+   */
   public find(req: Request, res: Response) {
     Publishing.findOne({ id: req.params.id }, (err, publishing) => {
       if (err) {
