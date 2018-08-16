@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { model } from 'mongoose';
 import { PublishingSchema } from '../models/publishingModel';
 import crypto from 'crypto';
-
+import { publishingWS } from '../server';
 
 const Publishing = model('publishing', PublishingSchema);
 
@@ -48,6 +48,8 @@ export class PublishingController {
         res.status(500).send(err);
       }
       res.json(publishing);
+      // broadcast new Publishing over WebSocket
+      publishingWS.broadcastMessage(JSON.stringify(publishing.toJSON()));
     });
   }
 
