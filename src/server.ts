@@ -21,11 +21,11 @@ const wsServer = http.createServer();
 
 // routing clients by url path
 wsServer.on('upgrade', (request, socket, head) => {
-  if (/publishing/.test(request.url)) {
+  if (/\/publishing$/.test(request.url)) {
     publishingWS.server.handleUpgrade(request, socket, head, function done(ws) {
       publishingWS.server.emit('connection', ws, request);
     });
-  } else if (/reaches/.test(request.url)) {
+  } else if (/\/reach$/.test(request.url)) {
     reachesWS.server.handleUpgrade(request, socket, head, function done(ws) {
       reachesWS.server.emit('connection', ws, request);
     });

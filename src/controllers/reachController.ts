@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { Reach } from '../models/reachModel';
+import { reachesWS } from '../server';
 
 export class ReachController {
 
@@ -29,6 +30,7 @@ export class ReachController {
         res.status(500).send(err);
       }
       res.sendStatus(200);
+      reachesWS.broadcastMessage(JSON.stringify(reach.toJSON()));
     })
   }
 }
